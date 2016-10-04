@@ -35,39 +35,13 @@
     <div class="list-group container">
         <!--  Product Container  -->
         <div class="list-group-item list-group-item-custom" ng-hide="product.soldOut" ng-repeat="product in store.products">
-            <h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
-            <p>{{product.description}}</p>
-            <button ng-show="product.canPurchase" class="btn btn-success">Add to Cart</button>
+            <h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3> <button ng-show="product.canPurchase" class="btn btn-success">Add to Cart</button>
             <ul class="img-thumbnails clearfix img-custom">
                 <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
                     <img ng-src="{{image}}" />
                 </li>
             </ul>
-            <div ng-controller="PanelController as panel">
-                <ul class="nav nav-pills">
-                    <li ng-class="{active:panel.isSelected(1)}">
-                        <a href="" ng-click="panel.selectedTab(1)">Description</a>
-                    </li>
-                    <li ng-class="{active:panel.isSelected(2)}">
-                        <a href="" ng-click="panel.selectedTab(2)">Specification</a>
-                    </li>
-                    <li ng-class="{active:panel.isSelected(3)}">
-                        <a href="" ng-click="panel.selectedTab(3)">Reviewes</a>
-                    </li>
-                </ul>
-                <div class="panel" ng-show="panel.isSelected(1)">
-                    <h4>Description</h4>
-                    <p>{{product.description}}</p>
-                </div>
-                <div ng-show="panel.isSelected(2)">
-                    <h4>Specs</h4>
-                    <blockquote>Shine: {{product.shine}}</blockquote>
-                </div>
-                <div ng-show="panel.isSelected(3)">
-                    <h4>Reviews</h4>
-                    <blockquote></blockquote>
-                </div>
-            </div>
+			<panel-tab></panel-tab>
             <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit=" reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
                 <!--  Live Preview -->
                 <blockquote>
